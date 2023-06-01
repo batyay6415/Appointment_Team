@@ -1,0 +1,13 @@
+.CardAppointment {
+    overflow: auto;
+    height: 200px;
+    width: 280px;
+    color: black;
+    border: 3px solid;
+    display: inline-block;
+    margin: 12px;
+    text-align: left;
+    padding: 4px;
+    background-color: lightpink;
+
+}

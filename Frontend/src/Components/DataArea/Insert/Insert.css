@@ -1,0 +1,16 @@
+.Insert form {
+	border: 3px solid;
+    width: 250px;
+    width: 250px;
+    color: black;
+    margin: auto;
+
+
+}
+
+.Insert input , .Insert select, .Insert button {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: large;
+}
