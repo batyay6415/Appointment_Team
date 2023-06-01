@@ -1,6 +1,6 @@
 class AppointmentModel {
 
-    public appointmentId : number;
+    public appointmentId: number;
     public teamId: number;
     public startDateTime: string;
     public endDateTime: string;

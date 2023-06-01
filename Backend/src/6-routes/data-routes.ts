@@ -10,7 +10,7 @@ router.get("/team", async (request: Request, response: Response, next: NextFunct
         const team = await dataService.getAllTeam();
         response.json(team);
     }
-    catch(err: any) {
+    catch (err: any) {
         next(err);
     }
 });
@@ -22,7 +22,7 @@ router.get("/appointment-by-team/:id([0-9]+)", async (request: Request, response
         const appointment = await dataService.getAllAppointmentByTeam(id);
         response.json(appointment);
     }
-    catch(err: any) {
+    catch (err: any) {
         next(err);
     }
 });
@@ -30,11 +30,11 @@ router.get("/appointment-by-team/:id([0-9]+)", async (request: Request, response
 //POST http://localhost:4000/api/appointment
 router.post("/appointment", async (request: Request, response: Response, next: NextFunction) => {
     try {
-       const appointment = new AppointmentModel(request.body);
-       const addedAppointment = await dataService.addNewAppointment(appointment);
-       response.status(201).json(addedAppointment);
+        const appointment = new AppointmentModel(request.body);
+        const addedAppointment = await dataService.addNewAppointment(appointment);
+        response.status(201).json(addedAppointment);
     }
-    catch(err: any) {
+    catch (err: any) {
         next(err);
     }
 });
@@ -46,12 +46,9 @@ router.delete("/appointment/:id([0-9]+)", async (request: Request, response: Res
         await dataService.deleteAppointment(id);
         response.sendStatus(204);
     }
-    catch(err: any) {
+    catch (err: any) {
         next(err);
     }
 });
-
-
-
 
 export default router;

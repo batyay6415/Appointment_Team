@@ -1,13 +1,13 @@
 class AppointmentModel {
 
-    public appointmentId : number;
+    public appointmentId: number;
     public teamId: number;
     public startDateTime: string;
     public endDateTime: string;
     public description: string;
     public room: string;
 
-    public constructor(appointment :AppointmentModel){
+    public constructor(appointment: AppointmentModel) {
         this.appointmentId = appointment.appointmentId;
         this.teamId = appointment.teamId;
         this.startDateTime = appointment.startDateTime;

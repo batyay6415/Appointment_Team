@@ -15,21 +15,21 @@ class DataService {
     }
 
     public async getAllAppointmentByTeam(id: number): Promise<AppointmentModel[]> {
-       
+
         const response = await axios.get<AppointmentModel[]>(appConfig.appointmentByTeamUrl + id);
-        
+
         const appointment = response.data;
 
         return appointment;
     }
 
-    public async addNewAppointment(appointment: AppointmentModel): Promise<void>{
-        
-        await axios.post<AppointmentModel>(appConfig.appointmentUrl , appointment);
+    public async addNewAppointment(appointment: AppointmentModel): Promise<void> {
+
+        await axios.post<AppointmentModel>(appConfig.appointmentUrl, appointment);
     }
 
-    public async deleteAppointment(id: number): Promise<void>{
-        
+    public async deleteAppointment(id: number): Promise<void> {
+
         await axios.delete<AppointmentModel>(appConfig.appointmentUrl + id);
     }
 }

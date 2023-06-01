@@ -31,9 +31,9 @@ async function getAllAppointmentByTeam(id: number): Promise<AppointmentModel[]> 
 
 async function addNewAppointment(appointment: AppointmentModel): Promise<AppointmentModel> {
 
-    if(checkAppointment)
-    throw new ValidationError("This Date is taken")
-    
+    if (checkAppointment)
+        throw new ValidationError("This Date is taken")
+
     const sql = `INSERT INTO appointment VALUES(DEFAULT , ?, ?, ?, ?, ?)`;
 
     const result: OkPacket = await dal.execute(sql, [appointment.teamId,
@@ -55,7 +55,7 @@ async function checkAppointment(appointment: AppointmentModel): Promise<boolean>
     const appointments = await dal.execute(sql, [appointment.teamId, appointment.endDateTime, appointment.startDateTime])
 
     return appointments.length > 0; // TRUE.
-    
+
 
 }
 
@@ -63,7 +63,7 @@ async function deleteAppointment(id: number): Promise<void> {
 
     const sql = `DELETE FROM appointment WHERE appointmentId = ?`
 
-    await dal.execute(sql , [id]);
+    await dal.execute(sql, [id]);
 
 }
 
