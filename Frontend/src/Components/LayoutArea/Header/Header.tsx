@@ -1,4 +1,3 @@
-import "./Header.css";
 
 function Header(): JSX.Element {
     return (

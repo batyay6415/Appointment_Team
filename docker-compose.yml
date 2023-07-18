@@ -1,0 +1,103 @@
+# List of all services (containers): - usually in our full-stack is three parts : data-base, back-end,front-end
+services: 
+# ------------------------------------------------------------------------------------------------
+  # 1. Appointment-team database service:
+  appointment-database-service:
+
+    # Database image name: 
+    image: batyaye6415/appointment-database-image:1.0
+
+    # Build image from Dockerfile location:
+    build: ./Database
+
+    # Container name: 
+    container_name: appointment-database-container
+
+    # Port binding: - bacause that mysql xammp run on port 3306
+    ports:
+      - 3306:3306
+
+    # Restart policy - on crash - what do we need to do?
+    restart: unless-stopped
+    
+    # Evironment Variables used inside our database:
+    environment:
+      - MYSQL_HOST=localhost # Internally for the container.
+      - MYSQL_DATABASE=team_appointment
+      - MYSQL_USER=Root
+      - MYSQL_PASSWORD=Wonderland
+      - MYSQL_ROOT_PASSWORD=Wonderland # Needed by MySQL image.
+
+    # Named Volume for persisting the data:
+    volumes: 
+      - appointment-db:/var/lib/mysql
+
+  # --------------------------------------------------------------------
+
+  # 2. Backend REST API service:
+  appointment-backend-service: 
+
+    # Image name to create:
+    image: batyaye6415/appointment-backend-image:1.0
+
+    # Build image from following Dockerfile location: 
+    build: ./Backend
+
+    # Container name to create:
+    container_name: appointment-backend-container
+
+    # Port binding (host-port:container-port)
+    ports:
+      - 4001:4000
+
+    # Restart policy - on crash - what do we need to do?
+    restart: unless-stopped
+
+    # Evironment Variables used inside our REST API:
+    environment:
+      - PORT=4000
+      - MYSQL_HOST=appointment-database-service # Database service name is the host name.
+      - MYSQL_DATABASE=team_appointment
+      - MYSQL_USER=Root
+      - MYSQL_PASSWORD=Wonderland
+
+    # Host volume for Hot-Reloading:- the file of backend that connect 
+    volumes:
+      - ./Backend:/app
+
+    depends_on:
+      - appointment-database-service  
+
+  # --------------------------------------------------------------------
+
+  # 3. Frontend service:
+  appointment-frontend-service:
+
+    # Frontend image: 
+    image: batyaye6415/appointment-frontend-image:1.0
+
+    # Build image: 
+    build: ./Frontend
+
+    # Container: 
+    container_name: appointment-frontend-container
+
+    # Port binding: 
+    ports: 
+      - 3000:3000
+
+    # Restart policy - on crash - what do we need to do?
+    restart: unless-stopped
+
+    # Host Volume for hot reloading: 
+    volumes:
+      - ./Frontend:/app
+
+    depends_on:
+      - appointment-backend-service
+      
+  # --------------------------------------------------------------------
+
+# List all your Named Volumes here:
+volumes:
+  appointment-db:

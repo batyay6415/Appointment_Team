@@ -1,12 +1,11 @@
 import mysql from "mysql";
-import appConfig from "./app-config";
 
-// Create a connection to MySQL's northwind database:
+// Create a connection to MySQL's appointment-team database:
 const connection = mysql.createPool({
-    host: appConfig.mySqlHost,
-    user: appConfig.mySqlUser,
-    password: appConfig.mySqlPassword,
-    database: appConfig.mySqlDatabase
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 });
 
 // Execute any sql: 

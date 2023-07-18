@@ -4,7 +4,6 @@ import TeamModel from "../../../Models/TeamModel";
 import dataService from "../../../Services/DataService";
 import notifyService from "../../../Services/NotifyService";
 import CardAppointment from "../CardAppointment/CardAppointment";
-import "./List.css";
 
 function List(): JSX.Element {
 
